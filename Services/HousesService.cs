@@ -43,5 +43,24 @@ namespace SharpList.Services
             _repo.RemoveHouse(houseId);
             return $"{houseId} was removed";
         }
+
+        internal House UpdateHouse(House updateData)
+        {
+            House original = this.GetHouseById(updateData.Id);
+            original.Sqft = updateData.Sqft != null ? updateData.Sqft : original.Sqft;
+
+            original.Bedrooms = updateData.Bedrooms != null ? updateData.Bedrooms : original.Bedrooms;
+
+            original.Bathrooms = updateData.Bathrooms != null ? updateData.Bathrooms : original.Bathrooms;
+
+            original.ImgUrl = updateData.ImgUrl != null ? updateData.ImgUrl : original.ImgUrl;
+
+            original.Description = updateData.Description != null ? updateData.Description : original.Description;
+
+            original.Price = updateData.Price != null ? updateData.Price : original.Price;
+
+            House house = _repo.UpdateHouse(original);
+            return house;
+        }
     }
 }

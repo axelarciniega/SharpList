@@ -47,5 +47,23 @@ namespace SharpList.Repositories
             string sql = "DELETE FROM houses WHERE id = @houseId";
             int rowsAffected = _db.Execute(sql, new { houseId });
         }
+
+        internal House UpdateHouse(House houseData)
+        {
+            string sql = @"
+                UPDATE houses
+                SET
+                sqft = @sqft,
+                bedrooms = @bedrooms,
+                bathrooms = @bathrooms,
+                imgUrl = @imgUrl,
+                description = @description,
+                price = @price
+                WHERE id = @id;
+                SELECT * FROM houses WHERE id = @id;
+            ";
+            House house = _db.Query<House>(sql, houseData).FirstOrDefault();
+            return house;
+        }
     }
 }

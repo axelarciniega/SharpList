@@ -63,6 +63,30 @@ namespace SharpList.Controllers
             }
         }
 
+
+        [HttpPut("{houseId}")]
+        public ActionResult<House> UpdateHouse([FromBody] House updateData, int houseId)
+        {
+            try
+            {
+                updateData.Id = houseId;
+                House house = _housesService.UpdateHouse(updateData);
+                return Ok(house);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
         [HttpDelete("{houseId}")]
         public ActionResult<string> RemoveHouse(int houseId)
         {
