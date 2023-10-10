@@ -17,6 +17,12 @@ namespace SharpList.Services
             _repo = repo;
         }
 
+        internal House CreateHouse(House houseData)
+        {
+            House house = _repo.CreateHouse(houseData);
+            return house;
+        }
+
         internal List<House> GetAllHouses()
         {
             List<House> houses = _repo.GetAllHouses();

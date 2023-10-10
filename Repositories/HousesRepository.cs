@@ -15,7 +15,18 @@ namespace SharpList.Repositories
             _db = db;
         }
 
-
+        internal House CreateHouse(House houseData)
+        {
+            string sql = @"
+            INSERT INTO houses
+            (sqft, bedrooms, bathrooms, imgUrl, description, price)
+            VALUES
+            (@sqft, @bedrooms, @bathrooms, @imgUrl, @description, @price);
+            SELECT * FROM houses WHERE id = LAST_INSERT_ID();
+            ";
+            House house = _db.Query<House>(sql, houseData).FirstOrDefault();
+            return house;
+        }
 
         internal List<House> GetAllHouses()
         {

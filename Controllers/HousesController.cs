@@ -49,6 +49,20 @@ namespace SharpList.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult<House> CreateHouse([FromBody] House houseData)
+        {
+            try
+            {
+                House house = _housesService.CreateHouse(houseData);
+                return Ok(house);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
 
