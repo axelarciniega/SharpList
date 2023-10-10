@@ -35,5 +35,13 @@ namespace SharpList.Services
             if (house == null) throw new Exception($"no car with id:{houseId}");
             return house;
         }
+
+        internal string RemoveHouse(int houseId)
+        {
+            House house = this.GetHouseById(houseId);
+
+            _repo.RemoveHouse(houseId);
+            return $"{houseId} was removed";
+        }
     }
 }

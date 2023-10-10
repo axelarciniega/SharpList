@@ -41,5 +41,11 @@ namespace SharpList.Repositories
             House house = _db.Query<House>(sql, new { houseId }).FirstOrDefault();
             return house;
         }
+
+        internal void RemoveHouse(int houseId)
+        {
+            string sql = "DELETE FROM houses WHERE id = @houseId";
+            int rowsAffected = _db.Execute(sql, new { houseId });
+        }
     }
 }

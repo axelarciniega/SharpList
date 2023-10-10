@@ -63,6 +63,20 @@ namespace SharpList.Controllers
             }
         }
 
+        [HttpDelete("{houseId}")]
+        public ActionResult<string> RemoveHouse(int houseId)
+        {
+            try
+            {
+                string message = _housesService.RemoveHouse(houseId);
+                return Ok(message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
 
