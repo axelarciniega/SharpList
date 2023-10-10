@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 using MySqlConnector;
 using server.Repositories;
 using server.Services;
+using SharpList.Repositories;
+using SharpList.Services;
 
 namespace sharpList;
 
@@ -38,6 +40,9 @@ public class Startup
 
     services.AddScoped<CarsRepository>();
     services.AddScoped<CarsService>();
+
+    services.AddScoped<HousesRepository>();
+    services.AddScoped<HousesService>();
   }
 
   private void ConfigureCors(IServiceCollection services)
